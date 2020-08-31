@@ -15,7 +15,8 @@ class ASCIIArt:
 
         self.path_to_image = self.valid_path(path_to_image)
         self.image = Image.open(str(self.path_to_image))
-        print(f'Image {self.path_to_image.name} has been successfully loaded!')
+        print(f'Image "{self.path_to_image.name}" has been successfully \
+            loaded!\n')
         print(f'Some image metadata: \
             \n- Size: {self.image.size} \
             \n- Format: {self.image.format} \
