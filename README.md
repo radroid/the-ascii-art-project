@@ -3,13 +3,13 @@ Welcome to The Ascii Art Project!
 > *This project layout or template was created using [auto-project-builder](https://www.github.com/radroid/auto-project-builder) created by **RaDroid**.*
 > *It is a library to automate the boring process of creating project files before you start working on it.*
 
-It is a CLI program that takes a pictures, converts it into an ASCII art and prints it on the shell (terminal) window.
+It is a CLI program that takes a picture, converts it into an ASCII art and prints it on the shell (terminal) window.
 
 [![that's how](https://forthebadge.com/images/badges/thats-how-they-get-you.svg)](https://forthebadge.com) 
 [![Built with](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) 
 [![Makes People smile](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com) 
 
-*tags: *
+*tags:*
 
 [![License](https://img.shields.io/github/license/radroid/the-ascii-art-project?style=for-the-badge)](https://github.com/radroid/the-ascii-art-project/blob/master/LICENSE)
 ![Last Commit](https://img.shields.io/github/last-commit/radroid/the-ascii-art-project?style=for-the-badge) 
