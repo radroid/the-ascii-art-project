@@ -1,6 +1,6 @@
 # The Ascii Art Project
 Welcome to The Ascii Art Project!
-> *This project layout or template was created using [auto-project-builder](https://www.github.com/radroid/auto-project-builder) created by **RaDroid**.*
+> *This initial project layout or template was created using [auto-project-builder](https://www.github.com/radroid/auto-project-builder) created by **RaDroid**.*
 > *It is a library to automate the boring process of creating project files before you start working on it.*
 
 It is a CLI program that takes a picture, converts it into an ASCII art and prints it on the shell (terminal) window.
