@@ -6,6 +6,7 @@ import pathlib
 from PIL import Image
 import numpy as np
 import re
+from time import time
 
 
 class ASCIIArt:
@@ -22,9 +23,9 @@ class ASCIIArt:
         print(f'Image "{self.path_to_image.name}" has been successfully \
             loaded!\n')
         print(f'Some image metadata: \
-            \n- Size: {self.image.size} \
+            \n- Size: {self.image.size[0]} x {self.image.size[1]} \
             \n- Format: {self.image.format} \
-            \n- Mode: {self.image.mode}')
+            \n- Mode: {self.image.mode}\n')
 
     @staticmethod
     def valid_path(path: str or pathlib.PosixPath):
@@ -83,7 +84,7 @@ class ASCIIArt:
         """Converts a numpy array into a PIL Image class object.
 
         Args:
-            array (np.ndarray): a 3D array that has the RBG colours of each \
+            array (np.ndarray): a 3D array that has the RGB colours of each \
                                 pixel on the image.
 
         Raises:
@@ -97,8 +98,31 @@ class ASCIIArt:
 
         return Image.putdata(array)
 
+    def create_brightness_matrix(self):
+        """Simplifies the RGB in the array to a single value brightness value.
+
+        Returns:
+            np.ndarray: a 2D array consisting of a single brightness value \
+                        for each pixel.
+        """
+        im_arr = self.arr_image
+        im_size = im_arr.shape
+        b_matrix = np.ndarray(im_size[:2])
+
+        t0 = time()
+        for row in range(im_size[0]):
+            for col in range(im_size[1]):
+                b_matrix[row, col] = np.round(im_arr[row, col, :].mean())
+
+        print(f'Time taken to create brightness matrix: \
+              \n{round(time() - t0, 3)} s\n')
+
+        return b_matrix
+
 
 if __name__ == '__main__':
     print('Welcome to the ASCII Art Project\n')
     art = ASCIIArt()
-    art.image.show()
+    print(art.arr_image.shape)
+    # art.image.show()
+    # art.create_brightness_matrix()
