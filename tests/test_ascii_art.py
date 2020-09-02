@@ -44,3 +44,9 @@ def test_convert_to_array_error(art):
 def test_convert_to_array_error_2(art):
     with pytest.raises(TypeError):
         art.convert_to_array(art)
+
+
+def test_brightness_matrix_size(art):
+    b_mat = art.create_brightness_matrix()
+    im_size = art.image.size[::-1]
+    assert b_mat.shape == im_size
