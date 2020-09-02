@@ -4,6 +4,8 @@ from an image."""
 
 import pathlib
 from PIL import Image
+import numpy as np
+import re
 
 
 class ASCIIArt:
@@ -15,6 +17,8 @@ class ASCIIArt:
 
         self.path_to_image = self.valid_path(path_to_image)
         self.image = Image.open(str(self.path_to_image))
+        self.arr_image = self.convert_to_array(self.image)
+
         print(f'Image "{self.path_to_image.name}" has been successfully \
             loaded!\n')
         print(f'Some image metadata: \
@@ -51,6 +55,50 @@ class ASCIIArt:
 
         return path
 
+    @staticmethod
+    def convert_to_array(image):
+        """Converts a PIL image object to a Numpy array (ndarray).
+
+        Args:
+            image (PIL Image object): An instance of the PIL Image class.
+
+        Raises:
+            TypeError: if the argument does not belong to the PIL Image class.
+
+
+        Returns:
+            np.ndarray: a 3D array that has the RBG colours of each pixel on \
+                        the image.
+        """
+        pattern = r"^<class 'PIL\..+Image.+\..+Image.+'>$"
+        string = str(type(image))
+
+        if re.match(pattern, string) is None:
+            raise TypeError('The provided argument is not a PIL class.')
+
+        return np.array(image)
+
+    @staticmethod
+    def convert_to_image(array):
+        """Converts a numpy array into a PIL Image class object.
+
+        Args:
+            array (np.ndarray): a 3D array that has the RBG colours of each \
+                                pixel on the image.
+
+        Raises:
+            TypeError: if the argument is not a numpy array.
+
+        Returns:
+            PIL Image object: An instance of the PIL Image class.
+        """
+        if not type(array) == np.ndarray:
+            raise TypeError('The provided argument is not a numpy array.')
+
+        return Image.putdata(array)
+
 
 if __name__ == '__main__':
-    print('Welcome to the-ascii-art-project')
+    print('Welcome to the ASCII Art Project\n')
+    art = ASCIIArt()
+    art.image.show()
