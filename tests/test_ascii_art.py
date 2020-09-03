@@ -50,3 +50,9 @@ def test_brightness_matrix_size(art):
     b_mat = art.create_brightness_matrix()
     im_size = art.image.size[::-1]
     assert b_mat.shape == im_size
+
+
+def test_ascii_art_length(art):
+    ascii_art = art.convert_to_ascii_char()
+    tot_pixels = art.image.size[0] * art.image.size[1]
+    assert len(ascii_art) == tot_pixels

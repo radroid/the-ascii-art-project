@@ -19,6 +19,7 @@ class ASCIIArt:
         self.path_to_image = self.valid_path(path_to_image)
         self.image = Image.open(str(self.path_to_image))
         self.arr_image = self.convert_to_array(self.image)
+        self.ascii_art = None
 
         print(f'Image "{self.path_to_image.name}" has been successfully \
             loaded!\n')
@@ -119,10 +120,35 @@ class ASCIIArt:
 
         return b_matrix
 
+    def convert_to_ascii_char(self):
+        chars = "\
+        `^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
+
+        def ascii_scaler(x, min=0, max=255, chars=chars.strip()):
+            """Normalises value of x according to the min and max values.
+
+            Args:
+                x (int): value to be updated.
+                min (int): minimum value in the numpy array. Defaults to 0.
+                max (int): maximum value in the numpy array. Defaults to 255.
+
+            Returns:
+                int: normalised integer value of x.
+            """
+            value = (x - min) / (max - min) * (len(chars) - 1)
+            return chars[int(round(value))]
+
+        b_matrix = self.create_brightness_matrix()
+        ascii_array = np.vectorize(ascii_scaler)(b_matrix)
+        ascii_art = ''.join([''.join(row) for row in ascii_array.tolist()])
+        self.ascii_art = ascii_art
+        return ascii_art
+
 
 if __name__ == '__main__':
     print('Welcome to the ASCII Art Project\n')
     art = ASCIIArt()
-    print(art.arr_image.shape)
+    ascii_art = art.convert_to_ascii_char()
+    print(ascii_art)
     # art.image.show()
     # art.create_brightness_matrix()
