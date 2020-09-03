@@ -9,10 +9,12 @@ It is a CLI program that takes a picture, converts it into an ASCII art and prin
 [![Built with](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) 
 [![Makes People smile](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com) 
 
-*tags:*
+*tags: ASCII, ASCII art, picture on terminal, terminal picture*
 
+![Workflow build status](https://img.shields.io/github/workflow/status/radroid/the-ascii-art-project/Python%20application?style=for-the-badge)
 [![License](https://img.shields.io/github/license/radroid/the-ascii-art-project?style=for-the-badge)](https://github.com/radroid/the-ascii-art-project/blob/master/LICENSE)
-![Last Commit](https://img.shields.io/github/last-commit/radroid/the-ascii-art-project?style=for-the-badge) 
+![Last Commit](https://img.shields.io/github/last-commit/radroid/the-ascii-art-project?style=for-the-badge)
+[![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/radroid/the-ascii-art-project?style=for-the-badge)](https://github.com/radroid/the-ascii-art-project/pulls?q=is%3Apr+is%3Aclosed)
 [![Open Pull Requests](https://img.shields.io/github/issues-pr/radroid/the-ascii-art-project?style=for-the-badge)](https://github.com/radroid/the-ascii-art-project/pulls) 
 
 ## Table of Contents
