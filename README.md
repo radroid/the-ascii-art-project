@@ -57,7 +57,7 @@ source virtual_env/bin/activate
 pip install -r requirements.txt
 ```
 
-**`...Continue`**
+
 
 ### For a Developer
 #### Code Review

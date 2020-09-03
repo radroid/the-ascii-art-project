@@ -31,8 +31,7 @@ def test_convert_to_array_type(art):
 
 
 def test_convert_to_array_shape(art):
-    expected_shape = art.image.size[1], art.image.size[0], \
-        len(art.image.format) - 1
+    expected_shape = (300, 450, 3)
     assert art.arr_image.shape == expected_shape
 
 
@@ -48,11 +47,11 @@ def test_convert_to_array_error_2(art):
 
 def test_brightness_matrix_size(art):
     b_mat = art.create_brightness_matrix()
-    im_size = art.image.size[::-1]
+    im_size = (300, 450)
     assert b_mat.shape == im_size
 
 
 def test_ascii_art_length(art):
     ascii_art = art.convert_to_ascii_char()
-    tot_pixels = art.image.size[0] * art.image.size[1]
+    tot_pixels = 300 * 450 * 3
     assert len(ascii_art) == tot_pixels
