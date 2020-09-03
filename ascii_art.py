@@ -108,24 +108,53 @@ class ASCIIArt:
 
         return Image.putdata(array)
 
-    def create_brightness_matrix(self):
+    def create_brightness_matrix(self, method='luminosity'):
         """Simplifies the RGB in the array to a single value brightness value.
+
+        Args:
+            method (str): name of the method to be used to map brightness.
+                          Options:
+                          - average = (R + G + B) / 3
+                          - lightness = (max(R,G,B) - min(R,G,B)) / 2
+                          - luminosity = 0.21R + 0.72G + 0.07B
+
+        Raises:
+            ValueError: if the input method is not one of the above three.
 
         Returns:
             np.ndarray: a 2D array consisting of a single brightness value \
                         for each pixel.
         """
+        if method not in ['average', 'lightness', 'luminosity']:
+            raise ValueError(f'The input method {method} is not part of the '
+                             'available ones.')
+
         im_arr = self.arr_image
         im_size = im_arr.shape
         b_matrix = np.ndarray(im_size[:2])
 
         t0 = time()
-        for row in range(im_size[0]):
-            for col in range(im_size[1]):
-                b_matrix[row, col] = np.round(im_arr[row, col, :].mean())
+        if method == 'average':
+            for row in range(im_size[0]):
+                for col in range(im_size[1]):
+                    b_matrix[row, col] = im_arr[row, col, :].mean()
+        elif method == 'lightness':
+            for row in range(im_size[0]):
+                for col in range(im_size[1]):
+                    num = im_arr[row, col, :].max() + \
+                          im_arr[row, col, :].min()
+                    b_matrix[row, col] = num / 2
+        elif method == 'luminosity':
+            weights = np.array([0.21, 0.72, 0.07])
+            for row in range(im_size[0]):
+                for col in range(im_size[1]):
+                    mat = weights * im_arr[row, col, :]
+                    b_matrix[row, col] = mat.sum()
 
-        print(f'Time taken to create brightness matrix: \
-              \n{round(time() - t0, 3)} s\n')
+        b_matrix = np.round(b_matrix)
+
+        print(f'Time taken to create brightness matrix: '
+              f'{round(time() - t0, 3)} s\n')
 
         return b_matrix
 
@@ -140,7 +169,7 @@ class ASCIIArt:
         chars = "\
         `^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
-        b_matrix = self.create_brightness_matrix()
+        b_matrix = self.create_brightness_matrix(method='average')
 
         minimum = b_matrix.min()
         maximum = b_matrix.max()
@@ -158,9 +187,6 @@ class ASCIIArt:
             """
             value = (x - min) / (max - min) * (len(chars) - 1)
             return chars[int(round(value))] * self.CHAR_FACTOR
-
-        def funcname(self, parameter_list):
-            pass
 
         ascii_scaler = average
         t0 = time()
@@ -227,9 +253,3 @@ def create_ascii_art():
 if __name__ == '__main__':
     print('\nWelcome to the ASCII Art Project\n\n')
     create_ascii_art()
-    # path = pathlib.Path('images') / 'krys.jpeg'
-    # art = ASCIIArt(path)
-    # art.convert_to_ascii_char()
-    # art.print_ascii_art()
-    # art.image.show()
-    # art.create_brightness_matrix()
