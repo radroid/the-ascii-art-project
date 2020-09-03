@@ -131,3 +131,4 @@ dmypy.json
 # Manually added
 venv/
 .vscode/
+.DS_Store
