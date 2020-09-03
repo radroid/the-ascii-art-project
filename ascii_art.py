@@ -158,9 +158,12 @@ class ASCIIArt:
 
         return b_matrix
 
-    def convert_to_ascii_char(self):
+    def convert_to_ascii_char(self, method=0):
         """Converts the brightness matrix into a string of ASCII charaters
          that can be printed on a terminal window to create an image.
+
+        Args:
+            method (str): to be passed to create_brightness_matrix() method.
 
         Returns:
             str: a string of ASCII characters that when printed will create
@@ -169,7 +172,9 @@ class ASCIIArt:
         chars = "\
         `^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
-        b_matrix = self.create_brightness_matrix(method='average')
+        method = ['average', 'lightness', 'luminosity'][method - 1]
+
+        b_matrix = self.create_brightness_matrix(method=method)
 
         minimum = b_matrix.min()
         maximum = b_matrix.max()
@@ -236,7 +241,10 @@ def create_ascii_art():
                              'the "images" folder? \n'
                              'Please re-enter a valid filename: ')
 
-    art.convert_to_ascii_char()
+    method = input('Select one of the following methods to be used for '
+                   'brightness mapping.\nNote: You can press ENTER to use '
+                   'default.\n1. Average\n2. Lightness\n3. Luminosity\n> ')
+    art.convert_to_ascii_char(method)
 
     print('\nPlease zoom out of terminal now. ("cmd" + "-") \n\nDETAILS: the '
           'image can be bigger than the maximum size of the current terminal '
