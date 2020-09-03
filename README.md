@@ -34,7 +34,7 @@ It is a CLI program that takes a picture, converts it into an ASCII art and prin
   * Use `ls` to list directories in the current directory.
 - You have the latest version of python installed.
 
-1. Clone this repository into your projects folder, i.e. the folder you would like to create projects in.
+**1. Clone this repository into your projects folder, i.e. the folder you would like to create projects in.**
 
 > *Note: use `cd` command to navigate to your projects directory.*
 
@@ -42,13 +42,13 @@ It is a CLI program that takes a picture, converts it into an ASCII art and prin
 git clone https://github.com/radroid/the-ascii-art-project.git
 ```
 
-2. Create a virtual environment in the auto-project-builder directory.
+**2. Create a virtual environment in the auto-project-builder directory.**
 ```bash
 cd the-ascii-art-project
 python3 -m venv virtual_env
 ```
 
-3. Activate environment and install the required modules.
+**3. Activate environment and install the required modules.**
 
 > *Note: check your python version by using `python --version`.*
 
@@ -57,6 +57,18 @@ source virtual_env/bin/activate
 pip install -r requirements.txt
 ```
 
+**4. Add picture to `images` directory.**
+Use Finder/File Explorer to add the picture you would like to convert to ASCII art in the `the-ascii-art-project/images` directory.
+*Remember the name of the file with its extension as it will be required later.*
+
+**5. Run the project.**
+```bash
+python ascii_art.py
+```
+Follow the instructions in the program. 
+> *Note: remember to zoom out before the program prints the final command. This is to ensure the terminal window can be sized to meet the demands of the picture.*
+
+You may not be able to see the text in the terminal window due to the zoom, but if you feel like your computer will get stuck, type `clear` before zooming back in.
 
 
 ### For a Developer
