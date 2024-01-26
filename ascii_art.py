@@ -50,7 +50,7 @@ class ASCIIArt:
         """
         if path is None:
             raise TypeError('Please input a valid path to the image.')
-        elif type(path) == str:
+        elif isinstance(path, str):
             path = pathlib.Path(path)
 
         if not path.exists():
