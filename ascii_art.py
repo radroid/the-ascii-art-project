@@ -86,7 +86,7 @@ class ASCIIArt:
         h = ASCIIArt.STD_HEIGHT
         ratio = image.size[0] / image.size[1]
         resized_im = image.resize((int(round(ratio * h)), h),
-                                  Image.ANTIALIAS)
+                                  Image.LANCZOS)
         return np.array(resized_im)
 
     @staticmethod
@@ -158,7 +158,7 @@ class ASCIIArt:
 
         return b_matrix
 
-    def convert_to_ascii_char(self, method=0):
+    def convert_to_ascii_char(self, method_idx=0):
         """Converts the brightness matrix into a string of ASCII charaters
          that can be printed on a terminal window to create an image.
 
@@ -172,7 +172,7 @@ class ASCIIArt:
         chars = "\
         `^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
-        method = ['average', 'lightness', 'luminosity'][method - 1]
+        method = ['average', 'lightness', 'luminosity'][int(method_idx) - 1]
 
         b_matrix = self.create_brightness_matrix(method=method)
 
@@ -244,7 +244,10 @@ def create_ascii_art():
     method = input('Select one of the following methods to be used for '
                    'brightness mapping.\nNote: You can press ENTER to use '
                    'default.\n1. Average\n2. Lightness\n3. Luminosity\n> ')
-    art.convert_to_ascii_char(method)
+    if method == "":
+        art.convert_to_ascii_char()
+    else:
+        art.convert_to_ascii_char(method)
 
     print('\nPlease zoom out of terminal now. ("cmd" + "-") \n\nDETAILS: the '
           'image can be bigger than the maximum size of the current terminal '
